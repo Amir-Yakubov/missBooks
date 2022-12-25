@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 
 import { BookFilter } from '../cmps/book-filter.jsx';
-import { BookList } from '../cmps/car-list.jsx';
+import { BookList } from '../cmps/book-list.jsx';
 import { BookDetails } from './book-details.jsx';
 
 import { bookService } from "../services/book.service.js"
@@ -54,11 +54,11 @@ export function BookIndex() {
         {!selectedBook && <div>
             <h1>Hello from book app!</h1>
             <BookFilter onSetFilter={onSetFilter} />
-            <BookList cars={books} onRemoveCar={onRemoveBook} onSelectCar={onSelectBook} />
+            <BookList books={books} onRemoveBook={onRemoveBook} onSelectBook={onSelectBook} />
         </div>}
 
         {selectedBook && <BookDetails
-            car={selectedBook}
+            book={selectedBook}
             onGoBack={() => setSelectedBook(null)}
         />}
     </section>

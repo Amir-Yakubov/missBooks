@@ -6,7 +6,7 @@ import { Home } from './views/home.jsx'
 
 export function App() {
 
-    const [page, setPage] = useState('home')
+    const [page, setPage] = useState('books')
 
     return <section className="app">
         <header className="app-header">

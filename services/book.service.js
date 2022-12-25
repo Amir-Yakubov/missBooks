@@ -55,11 +55,31 @@ function getDefaultFilter() {
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
     if (!books || !books.length) {
-        books = []
-        books.push(_createBook('audu', 300))
-        books.push(_createBook('fiak', 120))
-        books.push(_createBook('subali', 50))
-        books.push(_createBook('mitsu', 150))
+        books = [
+            {
+                "id": "OXeMG8wNskc",
+                "title": "metus hendrerit",
+                "description": "placerat nisi sodales suscipit tellus",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/89/Book_stub_img.svg",
+                "listPrice": {
+                    "amount": 109,
+                    "currencyCode": "EUR",
+                    "isOnSale": false
+                }
+            },
+            {
+                "id": "OXeMG123skc",
+                "title": "Amirs book",
+                "description": "mashu mashu mashu",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/89/Book_stub_img.svg",
+                "listPrice": {
+                    "amount": 29,
+                    "currencyCode": "EUR",
+                    "isOnSale": false
+                }
+            }
+        ]
+
         utilService.saveToStorage(BOOK_KEY, books)
     }
 }
