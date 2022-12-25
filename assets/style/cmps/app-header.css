@@ -21,9 +21,3 @@ h1.logo {
 .home {
   padding-left: 0;
 }
-
-@media(max-width: 720px) {
-  .app-header {
-    color: var(--clr2bg);
-  }
-}

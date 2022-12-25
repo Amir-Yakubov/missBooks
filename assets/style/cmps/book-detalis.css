@@ -6,4 +6,21 @@
 .img-book-detalis {
     display: block;
     margin: 2rem auto;
+    height: 550px;
+}
+
+.desc-title {
+    font-size: 3rem;
+}
+
+.price {
+    color: rgba(0, 0, 0, 0.774);
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
 }

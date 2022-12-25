@@ -44,7 +44,7 @@ export function BookFilter({ onSetFilter }) {
                 onChange={handleChange}
             />
 
-            <button>Filter</button>
+            <button className="filter-btn">Filter</button>
         </form>
 
     </section>

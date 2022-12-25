@@ -13,3 +13,43 @@
 @import 'cmps/user-msg.css';
 @import 'cmps/book-index.css';
 @import 'cmps/book-detalis.css';
+
+
+@media (max-width: 1460px) {
+    .Book-list {
+        grid-template-columns: 27% 27% 27%;
+    }
+
+    .app-nav,
+    .logo {
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 1100px) {
+    .Book-list {
+        grid-template-columns: 48% 48%;
+    }
+
+    .filter-btn {
+        display: none;
+    }
+
+    input {
+        display: block;
+        margin: 0 auto;
+    }
+
+
+    img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 740px) {
+    .Book-list {
+        grid-template-columns: 95%;
+    }
+
+}

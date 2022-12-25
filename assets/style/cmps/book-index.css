@@ -1,7 +1,11 @@
+form {
+    text-align: center;
+}
+
 .Book-list {
     list-style: none;
     display: grid;
-    grid-template-columns: 320px 320px 320px;
+    grid-template-columns: 333px 333px 333px 333px;
     gap: 20px;
     padding: 0;
     text-align: center;
@@ -10,8 +14,8 @@
 }
 
 .book-card {
+    background-color: rgb(153 166 149 / 21%);
     position: relative;
-    background-color: rgb(95 107 92 / 10%);
     border-radius: 2rem;
     border: 1px solid rgba(0, 0, 0, 0.149);
     box-shadow: 0 0 20px 1px #00000036;
@@ -20,9 +24,7 @@
 }
 
 .book-card:hover {
-    /* background-color: transparent; */
-    transform: scale(1.05, 1.05);
-    border: 1px solid rgba(255, 255, 255, 0.149);
+    transform: scale(1.03, 1.03);
 }
 
 .book-preview {
@@ -41,22 +43,33 @@ label {
 
 input {
     font-size: 1.5rem;
+    border-radius: 2rem;
+    padding: 5px;
+    padding-left: 15px;
 }
 
 button {
     font-size: 1.2rem;
     border-radius: 0.7rem;
     line-height: 1.2rem;
+    border-radius: 2rem;
+    padding: 12px 30px;
+    vertical-align: baseline;
 }
 
-.remove-btn {
+button.remove-btn {
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 1rem;
-
+    font-size: 1.3rem;
+    background-color: rgba(255, 0, 0, 0.154);
 }
 
 .book-card-title {
-    padding-top: 0.5rem;
+    padding-top: 2rem;
+}
+
+.text-wrap {
+    height: 160px;
+    margin-bottom: 10px;
 }
