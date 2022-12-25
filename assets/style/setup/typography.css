@@ -1,2 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+@font-face {
+    font-family: cinzel;
+    src: url(/assets/fonts/Cinzel-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: dm-serif;
+    src: url(/assets/fonts/DMSerifDisplay-Regular.ttf);
+}
+
+@font-face {
+    font-family: el-messiri;
+    src: url(/assets/fonts/ElMessiri-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: noto;
+    src: url(/assets/fonts/NotoSerif-Regular.ttf);
+}
+
+@font-face {
+    font-family: pt-serif;
+    src: url(/assets/fonts/PTSerif-Regular.ttf);
+}

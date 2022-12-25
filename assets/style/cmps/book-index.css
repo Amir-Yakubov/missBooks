@@ -1,0 +1,62 @@
+.Book-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 320px 320px 320px;
+    gap: 20px;
+    padding: 0;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.book-card {
+    position: relative;
+    background-color: rgb(95 107 92 / 10%);
+    border-radius: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.149);
+    box-shadow: 0 0 20px 1px #00000036;
+    padding: 10px;
+    transition: transform .4s;
+}
+
+.book-card:hover {
+    /* background-color: transparent; */
+    transform: scale(1.05, 1.05);
+    border: 1px solid rgba(255, 255, 255, 0.149);
+}
+
+.book-preview {
+    font-size: 1.2rem;
+}
+
+.books-title {
+    font-size: 3rem;
+    text-align: center;
+}
+
+label {
+    font-size: 2rem;
+    padding: 10px;
+}
+
+input {
+    font-size: 1.5rem;
+}
+
+button {
+    font-size: 1.2rem;
+    border-radius: 0.7rem;
+    line-height: 1.2rem;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1rem;
+
+}
+
+.book-card-title {
+    padding-top: 0.5rem;
+}

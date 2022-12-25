@@ -1,7 +1,7 @@
-.main-layout {
+
+.main-layout>*:not(.full) {
+  max-width: 1000px;
   margin: 0 auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
 }
 
 .container {
@@ -9,5 +9,3 @@
   padding: 1em;
   margin: auto;
 }
-
-

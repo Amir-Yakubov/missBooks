@@ -25,7 +25,6 @@ export function BookIndex() {
     }
 
     function onSetFilter(filterByFromFilter) {
-        console.log('filterByFromFilter', filterByFromFilter)
         setFilterBy(filterByFromFilter)
     }
 
@@ -50,10 +49,10 @@ export function BookIndex() {
         }, 3000)
     }
 
-    return <section className="book-index ">
+    return <section className="book-index">
         {userMsg && <UserMsg msg={userMsg} />}
         {!selectedBook && <div>
-            <h1>Hello from book app!</h1>
+            <h1 className="books-title">Library</h1>
             <BookFilter onSetFilter={onSetFilter} />
             <BookList books={books} onRemoveBook={onRemoveBook} onSelectBook={onSelectBook} />
         </div>}
