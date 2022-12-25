@@ -30,17 +30,17 @@ export function BookFilter({ onSetFilter }) {
             <label htmlFor="title">Title:</label>
             <input type="text"
                 id="title"
-                name="txt"
+                name="title"
                 placeholder="By title"
                 value={filterByToEdit.txt}
                 onChange={handleChange}
             />
 
-            <label htmlFor="price">Min price:</label>
+            <label htmlFor="price">Price:</label>
             <input type="number"
                 id="price"
                 name="price"
-                placeholder="By min price"
+                placeholder="By max price"
                 value={filterByToEdit.minSpeed}
                 onChange={handleChange}
             />

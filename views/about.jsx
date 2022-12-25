@@ -1,5 +1,5 @@
 
 export function About() {
 
-    return <p>About</p>
+    return <p>About Amir Yakubov</p>
 }

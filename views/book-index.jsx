@@ -25,6 +25,7 @@ export function BookIndex() {
     }
 
     function onSetFilter(filterByFromFilter) {
+        console.log('filterByFromFilter', filterByFromFilter)
         setFilterBy(filterByFromFilter)
     }
 
@@ -32,7 +33,7 @@ export function BookIndex() {
         bookService.remove(bookId).then(() => {
             const updatedBooks = books.filter(book => book.id !== bookId)
             setBooks(updatedBooks)
-            flashMsg('Book removed!')
+            flashMsg(`Book ${bookId} removed!`)
         })
     }
 

@@ -16,12 +16,13 @@ export const bookService = {
 function query(filterBy = getDefaultFilter()) {
     return storageService.query(BOOK_KEY)
         .then(books => {
-            if (filterBy.txt) {
-                const regex = new RegExp(filterBy.txt, 'i')
-                books = books.filter(car => regex.test(car.vendor))
+
+            if (filterBy.title) {
+                const regex = new RegExp(filterBy.title, 'i')
+                books = books.filter(book => regex.test(book.title))
             }
-            if (filterBy.minSpeed) {
-                books = books.filter(car => car.maxSpeed >= filterBy.minSpeed)
+            if (filterBy.price) {
+                books = books.filter(book => book.listPrice.amount <= filterBy.price)
             }
             return books
         })
@@ -29,7 +30,6 @@ function query(filterBy = getDefaultFilter()) {
 
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
-    // return axios.get(CAR_KEY, carId)
 }
 
 function remove(bookId) {
@@ -63,6 +63,17 @@ function _createBooks() {
                 "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/89/Book_stub_img.svg",
                 "listPrice": {
                     "amount": 109,
+                    "currencyCode": "EUR",
+                    "isOnSale": false
+                }
+            },
+            {
+                "id": "OXeMG456skc",
+                "title": "Coding academy",
+                "description": "placerat nisi sodales suscipit tellus",
+                "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/89/Book_stub_img.svg",
+                "listPrice": {
+                    "amount": 56,
                     "currencyCode": "EUR",
                     "isOnSale": false
                 }
