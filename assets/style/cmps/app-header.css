@@ -7,17 +7,27 @@
   padding-bottom: 15px;
 }
 
-h1.logo {
+.logo {
   padding-top: 10px;
   font-family: el-messiri;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .nav-link {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 10px;
 }
 
-.home {
-  padding-left: 0;
+.nav-link::after {
+  content: ' |';
+}
+
+.nav-link.active {
+  font-size: 2rem;
+  padding: 10px;
+  color: white;
+}
+
+.book::after {
+  content: "";
 }

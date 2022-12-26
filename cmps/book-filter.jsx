@@ -14,9 +14,7 @@ export function BookFilter({ onSetFilter }) {
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = (type === 'number') ? +value : value
-        setFilterByToEdit((prevFilter) => {
-            return { ...prevFilter, [field]: value }
-        })
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
     function onSubmitFilter(ev) {
@@ -26,20 +24,20 @@ export function BookFilter({ onSetFilter }) {
 
     return <section className="book-filter">
         <form onSubmit={onSubmitFilter}>
-            <label htmlFor="title">Search</label>
+            {/* <label htmlFor="title">Search</label> */}
             <input type="text"
                 id="title"
                 name="title"
-                placeholder="By title"
+                placeholder="filter by title"
                 value={filterByToEdit.txt}
                 onChange={handleChange}
             />
 
-            <label htmlFor="price">Price</label>
+            {/* <label htmlFor="price">Price</label> */}
             <input type="number"
                 id="price"
                 name="price"
-                placeholder="By max price"
+                placeholder="filter by max price"
                 value={filterByToEdit.minSpeed}
                 onChange={handleChange}
             />

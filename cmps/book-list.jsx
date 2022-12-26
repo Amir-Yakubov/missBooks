@@ -1,6 +1,8 @@
+const { Link } = ReactRouterDOM
+
 import { BookPreview } from "./book-preview.jsx";
 
-export function BookList({ books, onRemoveBook, onSelectBook }) {
+export function BookList({ books, onRemoveBook }) {
 
     return <ul className="Book-list">
         {
@@ -8,7 +10,8 @@ export function BookList({ books, onRemoveBook, onSelectBook }) {
                 <BookPreview book={book} />
                 <div>
                     <button className="btn remove-btn" onClick={() => onRemoveBook(book.id)}>x</button>
-                    <button className="btn read-btn" onClick={() => onSelectBook(book.id)}>read more</button>
+                    <button className="btn read-btn" onClick={() => { }}>select</button>
+                    <Link to={`/book/${book.id}`}> Read more</Link>
                 </div>
             </li>)
         }

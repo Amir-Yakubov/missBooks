@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
 
 import { BookFilter } from '../cmps/book-filter.jsx';
 import { BookList } from '../cmps/book-list.jsx';
@@ -11,7 +12,6 @@ export function BookIndex() {
 
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
     const [books, setBooks] = useState([])
-    const [selectedBook, setSelectedBook] = useState(null)
     const [userMsg, setUserMsg] = useState('')
 
     useEffect(() => {
@@ -36,11 +36,6 @@ export function BookIndex() {
         })
     }
 
-    function onSelectBook(bookId) {
-        bookService.get(bookId).then((book) => {
-            setSelectedBook(book)
-        })
-    }
 
     function flashMsg(msg) {
         setUserMsg(msg)
@@ -51,15 +46,14 @@ export function BookIndex() {
 
     return <section className="book-index">
         {userMsg && <UserMsg msg={userMsg} />}
-        {!selectedBook && <div>
+        <div>
             <h1 className="books-title">Library</h1>
             <BookFilter onSetFilter={onSetFilter} />
-            <BookList books={books} onRemoveBook={onRemoveBook} onSelectBook={onSelectBook} />
-        </div>}
+            <Link className="book-edit-btn btn" to="/book/edit" >Add book</Link>
+            <BookList books={books} onRemoveBook={onRemoveBook} />
+        </div>
+        {console.log(books)}
+        {!books.length && <img className="loader-svg" src="/assets/svg-loaders/ball-triangle.svg" />}
 
-        {selectedBook && <BookDetails
-            book={selectedBook}
-            onGoBack={() => setSelectedBook(null)}
-        />}
     </section>
 }

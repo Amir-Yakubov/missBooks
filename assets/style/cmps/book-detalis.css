@@ -1,16 +1,16 @@
 .book-details {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .img-book-detalis {
     display: block;
     margin: 2rem auto;
-    height: 550px;
+    height: 400px;
 }
 
 .desc-title {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .price {

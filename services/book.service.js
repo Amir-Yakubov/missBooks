@@ -44,8 +44,29 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', price = '') {
-    return { id: '', title, price }
+function getEmptyBook() {
+    return {
+        "id": '',
+        "title": "",
+        "subtitle": "",
+        "authors": [
+            ""
+        ],
+        "publishedDate": 2023,
+        "description": "",
+        "pageCount": 0,
+        "categories": [
+            "",
+            ""
+        ],
+        "thumbnail": "http://coding-academy.org/books-photos/20.jpg",
+        "language": "",
+        "listPrice": {
+            "amount": 0,
+            "currencyCode": "EUR",
+            "isOnSale": false
+        }
+    }
 }
 
 function getDefaultFilter() {
