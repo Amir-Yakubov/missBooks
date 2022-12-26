@@ -5,7 +5,7 @@ form {
 .Book-list {
     list-style: none;
     display: grid;
-    grid-template-columns: 333px 333px 333px 333px;
+    grid-template-columns: 20% 20% 20% 20% 20%;
     gap: 20px;
     padding: 0;
     text-align: center;
@@ -65,11 +65,12 @@ button.remove-btn {
     background-color: rgba(255, 0, 0, 0.154);
 }
 
-.book-card-title {
-    padding-top: 2rem;
-}
-
 .text-wrap {
+    padding: 30px 10px;
     height: 160px;
     margin-bottom: 10px;
+}
+
+.price-card-title {
+    font-size: 1.1rem;
 }
