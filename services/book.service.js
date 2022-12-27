@@ -11,6 +11,8 @@ export const bookService = {
     save,
     getEmptyBook,
     getDefaultFilter,
+    getEmptyReview,
+    addReview
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -44,6 +46,23 @@ function save(book) {
     }
 }
 
+function addReview(bookId, review) {
+    console.log(review)
+    const book = get(bookId).then((book) => {
+        const { reviews } = book
+        reviews.push(review)
+        return save(book)
+    })
+}
+
+function getEmptyReview() {
+    return {
+        'name': '',
+        'rate': '',
+        'review': ''
+    }
+}
+
 function getEmptyBook() {
     return {
         "id": '',
@@ -62,10 +81,27 @@ function getEmptyBook() {
         "thumbnail": "http://coding-academy.org/books-photos/20.jpg",
         "language": "",
         "listPrice": {
-            "amount": 0,
+            "amount": '',
             "currencyCode": "EUR",
             "isOnSale": false
-        }
+        },
+        'reviews': [
+            {
+                'name': 'Muki Shuki',
+                'rate': '4.3',
+                'review': 'Very good book, i would sdkjcnskdjcn ksjdck ksjdcn kjs nkjnc ksjdn skdj nksjdnck jdndkj cnskj nskdj nsckjnck eeeeedwoid.'
+            },
+            {
+                'name': 'Dudi Shuki',
+                'rate': '5',
+                'review': 'Very good book, i would sdkjcnskdjcn ksjdck ksjdcn kjs nkjnc ksjdn skdj nksjdnck jdndkj cnskj nskdj nsckjnck eeeeedwoid.'
+            },
+            {
+                'name': 'Puki Shuki',
+                'rate': '3',
+                'review': 'Very bad book, i would sdkjcnskdjcn ksjdck ksjdcn kjs nkjnc ksjdn skdj nksjdnck jdndkj cnskj nskdj nsckjnck eeeeedwoid.'
+            }
+        ]
     }
 }
 
@@ -521,10 +557,4 @@ function _createBooks() {
 
         utilService.saveToStorage(BOOK_KEY, books)
     }
-}
-
-function _createBook(title, maxPrice = 250) {
-    const car = getEmptyBook(title, maxPrice)
-    car.id = utilService.makeId()
-    return book
 }

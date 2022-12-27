@@ -59,6 +59,16 @@ button {
     vertical-align: baseline;
 }
 
+.btn {
+    display: block;
+    font-size: 1.2rem;
+    border-radius: 0.7rem;
+    line-height: 1.2rem;
+    border-radius: 2rem;
+    padding: 12px 30px;
+    vertical-align: baseline;
+}
+
 button.remove-btn {
     position: absolute;
     top: 0;

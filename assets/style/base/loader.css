@@ -1,6 +1,9 @@
 .loader-svg {
-    display: block;
-    margin: 20vh auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: (-50%, -50%);
+
     height: 100px;
     background-color: #5f6b5cad;
     border-radius: 20rem;

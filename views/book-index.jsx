@@ -3,24 +3,24 @@ const { Link } = ReactRouterDOM
 
 import { BookFilter } from '../cmps/book-filter.jsx';
 import { BookList } from '../cmps/book-list.jsx';
-import { BookDetails } from './book-details.jsx';
-
 import { bookService } from "../services/book.service.js"
 import { UserMsg } from '../cmps/user-msg.jsx';
 
 export function BookIndex() {
-
+    const [isLoading, setIsLoading] = useState(false)
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
     const [books, setBooks] = useState([])
     const [userMsg, setUserMsg] = useState('')
 
     useEffect(() => {
+        setIsLoading(true)
         loadBooks()
     }, [filterBy])
 
     function loadBooks() {
         bookService.query(filterBy).then(booksToUpdate => {
             setBooks(booksToUpdate)
+            setIsLoading(false)
         })
     }
 
@@ -36,7 +36,6 @@ export function BookIndex() {
         })
     }
 
-
     function flashMsg(msg) {
         setUserMsg(msg)
         setTimeout(() => {
@@ -50,10 +49,11 @@ export function BookIndex() {
             <h1 className="books-title">Library</h1>
             <BookFilter onSetFilter={onSetFilter} />
             <Link className="book-edit-btn btn" to="/book/edit" >Add book</Link>
-            <BookList books={books} onRemoveBook={onRemoveBook} />
+            {!isLoading && <BookList books={books} onRemoveBook={onRemoveBook} />}
         </div>
+        {isLoading && <img className="loader-svg" src="/assets/svg-loaders/ball-triangle.svg" />}
+        {!books.length && <h2>No books to show, please add book</h2>}
         {console.log(books)}
-        {!books.length && <img className="loader-svg" src="/assets/svg-loaders/ball-triangle.svg" />}
 
     </section>
 }

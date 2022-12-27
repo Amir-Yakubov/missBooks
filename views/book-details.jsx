@@ -1,7 +1,9 @@
 const { useState, useEffect } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const { useParams, useNavigate, Link } = ReactRouterDOM
 
+import { BookReviews } from "../cmps/book-reviews.jsx"
 import { bookService } from "../services/book.service.js"
+
 export function BookDetails() {
     const params = useParams()
     const navigate = useNavigate()
@@ -53,6 +55,9 @@ export function BookDetails() {
         <p className="language">Language {book.language}</p>
         <p className="Pages">{getPagesRate()} {book.pageCount} Pages</p>
         {book.listPrice.isOnSale && <p className="available-in-stock">On Sale!!</p>}
+        <BookReviews />
+
         <button onClick={onGoBack}>Go Back</button>
+        <Link to={`/book/edit/${book.id}`}>Edit Book</Link>
     </section>
 }

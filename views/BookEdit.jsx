@@ -1,10 +1,29 @@
 import { bookService } from "../services/book.service.js"
 
-const { useState } = React
+const { useState, useEffect } = React
+const { useNavigate, useParams } = ReactRouterDOM
 
 export function BookEdit() {
     const [bookToEdit, SetBookToEdit] = useState(bookService.getEmptyBook())
-    console.log(bookToEdit);
+    const navigate = useNavigate()
+    const { bookId } = useParams()
+    console.log(bookToEdit)
+    console.log(bookId)
+
+    useEffect(() => {
+        if (!bookId) return
+        loadBook()
+
+    }, [])
+
+    function loadBook() {
+        bookService.get(bookId)
+            .then((book) => SetBookToEdit(book))
+            .catch((err) => {
+                console.log('Could not load book', err)
+                navigate('/book')
+            })
+    }
 
     function handelChange({ target }) {
         let { value, name: field } = target
@@ -22,12 +41,14 @@ export function BookEdit() {
     function onSaveCar(ev) {
         ev.preventDefault()
         bookService.save(bookToEdit).then((book) => {
-            console.log('saved book', book);
+            console.log('saved book', book)
+            navigate('/book')
         })
     }
     let price = bookToEdit.listPrice.amount
     return <section className="book-edit">
-
+        <h1>{bookToEdit.id ? `Edit book ${bookToEdit.title}` : 'Add book'}</h1>
+        {bookToEdit.id && <img class="img-book-detalis" src={bookToEdit.thumbnail}></img>}
         <form className="book-edit-form" onSubmit={onSaveCar}>
             <label htmlFor="title">Title</label>
             <input type="text"
@@ -47,15 +68,9 @@ export function BookEdit() {
                 onChange={handelPriceChange}
             />
 
-            <button>Save</button>
-            <button type="button">Cancel</button>
-            {/* 
-            <input type="file"
-                name="image"
-                id="image"
-                // value={bookToEdit.thumbnail}
-                onChange={handelChange} 
-                /> */}
+            <button>{bookToEdit.id ? 'Edit' : 'Save'}</button>
+            <button type="button" onClick={() => navigate('/book')}>Cancel</button>
+
         </form>
     </section>
 }

@@ -23,6 +23,7 @@ export function App() {
                     <Route element={<About />} path="/about" />
                     <Route element={<BookIndex />} path="/book" />
                     <Route element={<BookEdit />} path="/book/edit" />
+                    <Route element={<BookEdit />} path="/book/edit/:bookId" />
                     <Route element={<BookDetails />} path="/book/:bookId" />
                 </Routes>
 
