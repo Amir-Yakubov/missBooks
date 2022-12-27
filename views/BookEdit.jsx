@@ -1,7 +1,8 @@
-import { bookService } from "../services/book.service.js"
-
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
+
+import { bookService } from "../services/book.service.js"
+import { eventBusService, showSuccessMsg } from "../services/event-bus.service.js"
 
 export function BookEdit() {
     const [bookToEdit, SetBookToEdit] = useState(bookService.getEmptyBook())
@@ -42,13 +43,14 @@ export function BookEdit() {
         ev.preventDefault()
         bookService.save(bookToEdit).then((book) => {
             console.log('saved book', book)
+            showSuccessMsg('Book saved')
             navigate('/book')
         })
     }
     let price = bookToEdit.listPrice.amount
     return <section className="book-edit">
         <h1>{bookToEdit.id ? `Edit book ${bookToEdit.title}` : 'Add book'}</h1>
-        {bookToEdit.id && <img class="img-book-detalis" src={bookToEdit.thumbnail}></img>}
+        {bookToEdit.id && <img className="img-book-detalis" src={bookToEdit.thumbnail}></img>}
         <form className="book-edit-form" onSubmit={onSaveCar}>
             <label htmlFor="title">Title</label>
             <input type="text"

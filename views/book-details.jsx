@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
 import { BookReviews } from "../cmps/book-reviews.jsx"
+import { LongTxt } from "../cmps/long-txt.jsx"
 import { bookService } from "../services/book.service.js"
 
 export function BookDetails() {
@@ -50,7 +51,8 @@ export function BookDetails() {
         <p className="author-and-date">{book.authors[0]} {book.publishedDate} {isBookVintage()}</p>
         <h3>{book.listPrice.currencyCode} <span className={getPriceColor()}>{book.listPrice.amount}</span></h3>
         <img className="img-book-detalis" src={book.thumbnail} />
-        <p className="description">{book.description}</p>
+        {/* <p className="description">{book.description}</p> */}
+        <LongTxt txt={book.description} length={100} />
         <p className="categories">Categories: {book.categories[0]}, {book.categories[1]}</p>
         <p className="language">Language {book.language}</p>
         <p className="Pages">{getPagesRate()} {book.pageCount} Pages</p>

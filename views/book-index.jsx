@@ -4,13 +4,12 @@ const { Link } = ReactRouterDOM
 import { BookFilter } from '../cmps/book-filter.jsx';
 import { BookList } from '../cmps/book-list.jsx';
 import { bookService } from "../services/book.service.js"
-import { UserMsg } from '../cmps/user-msg.jsx';
+import { eventBusService, showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js';
 
 export function BookIndex() {
     const [isLoading, setIsLoading] = useState(false)
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
     const [books, setBooks] = useState([])
-    const [userMsg, setUserMsg] = useState('')
 
     useEffect(() => {
         setIsLoading(true)
@@ -32,19 +31,16 @@ export function BookIndex() {
         bookService.remove(bookId).then(() => {
             const updatedBooks = books.filter(book => book.id !== bookId)
             setBooks(updatedBooks)
-            flashMsg(`Book ${bookId} removed!`)
+            showSuccessMsg(`Book ${bookId} removed`)
         })
+            .catch((err) => {
+                console.log('Could not remove book', err)
+                showErrorMsg('Could not remove book')
+            })
     }
 
-    function flashMsg(msg) {
-        setUserMsg(msg)
-        setTimeout(() => {
-            setUserMsg('')
-        }, 3000)
-    }
 
     return <section className="book-index">
-        {userMsg && <UserMsg msg={userMsg} />}
         <div>
             <h1 className="books-title">Library</h1>
             <BookFilter onSetFilter={onSetFilter} />

@@ -12,7 +12,8 @@ export const bookService = {
     getEmptyBook,
     getDefaultFilter,
     getEmptyReview,
-    addReview
+    addReview,
+    delReview
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -47,16 +48,28 @@ function save(book) {
 }
 
 function addReview(bookId, review) {
-    console.log(review)
-    const book = get(bookId).then((book) => {
-        const { reviews } = book
-        reviews.push(review)
+    return get(bookId).then((book) => {
+
+        if (!book.reviews) book.reviews = []
+        book.reviews.push(review)
+        console.log(book.reviews)
         return save(book)
+    })
+}
+
+function delReview(bookId, reviewId) {
+    return get(bookId).then((book) => {
+        console.log('book reviews', book.reviews)
+        const idx = book.reviews.findIndex(review => reviewId === review.id)
+        book.reviews.splice(idx, 1)
+        return save(book)
+
     })
 }
 
 function getEmptyReview() {
     return {
+        'id': utilService.makeId(4),
         'name': '',
         'rate': '',
         'review': ''
