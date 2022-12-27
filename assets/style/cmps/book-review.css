@@ -20,3 +20,21 @@
     padding: 0;
     margin: 0;
 }
+
+.star {
+    color: #ff9933;
+    cursor: pointer;
+}
+
+.main-li {
+    cursor: pointer;
+}
+
+.reviews-li {
+    padding: 20px;
+    font-size: 1.1rem;
+}
+
+.hidden {
+    display: none;
+}

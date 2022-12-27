@@ -13,7 +13,9 @@ export const bookService = {
     getDefaultFilter,
     getEmptyReview,
     addReview,
-    delReview
+    delReview,
+    getNextBookId,
+    getPrevBookId
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -33,6 +35,24 @@ function query(filterBy = getDefaultFilter()) {
 
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
+}
+
+function getNextBookId(bookId) {
+    return storageService.query(BOOK_KEY)
+        .then(books => {
+            let idx = books.findIndex(book => book.id === bookId)
+            if (idx === books.length - 1) idx = -1
+            return books[idx + 1].id
+        })
+}
+
+function getPrevBookId(bookId) {
+    return storageService.query(BOOK_KEY)
+        .then(books => {
+            let idx = books.findIndex(book => book.id === bookId)
+            if (idx === books.length - 1) idx = -1
+            return books[idx - 1].id
+        })
 }
 
 function remove(bookId) {
@@ -63,7 +83,6 @@ function delReview(bookId, reviewId) {
         const idx = book.reviews.findIndex(review => reviewId === review.id)
         book.reviews.splice(idx, 1)
         return save(book)
-
     })
 }
 
@@ -72,7 +91,7 @@ function getEmptyReview() {
         'id': utilService.makeId(4),
         'name': '',
         'rate': '',
-        'review': ''
+        'review': '0'
     }
 }
 

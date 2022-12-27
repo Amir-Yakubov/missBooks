@@ -1,26 +1,38 @@
 const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
-import { BookReviews } from "../cmps/book-reviews.jsx"
-import { LongTxt } from "../cmps/long-txt.jsx"
+import { showErrorMsg } from "../services/event-bus.service.js"
 import { bookService } from "../services/book.service.js"
 
+import { BookReviews } from "../cmps/book-reviews.jsx"
+import { LongTxt } from "../cmps/long-txt.jsx"
+
 export function BookDetails() {
-    const params = useParams()
-    const navigate = useNavigate()
+
+    const [nextBookId, setNextBookId] = useState(null)
+    const [prevBookId, setPrevtBookId] = useState(null)
     const [book, setBook] = useState()
+    const { bookId } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadBook()
-    }, [])
+    }, [bookId])
 
     function loadBook() {
-        bookService.get(params.bookId)
+        bookService.get(bookId)
             .then((book) => setBook(book))
             .catch((err) => {
                 console.log('Could not load book', err)
+                showErrorMsg('Could not load book')
                 navigate('/book')
             })
+
+        bookService.getNextBookId(bookId)
+            .then(setNextBookId)
+
+        bookService.getPrevBookId(bookId)
+            .then(setPrevtBookId)
     }
 
     function getPagesRate() {
@@ -44,7 +56,7 @@ export function BookDetails() {
     }
 
     if (!book) return <img className="loader-svg" src="/assets/svg-loaders/ball-triangle.svg" />
-
+    console.log('nextBookId', nextBookId)
     return <section className="book-details">
         <h1 className="desc-title">{book.title}</h1>
         <h2>{book.subtitle}</h2>
@@ -61,5 +73,9 @@ export function BookDetails() {
 
         <button onClick={onGoBack}>Go Back</button>
         <Link to={`/book/edit/${book.id}`}>Edit Book</Link>
+        <hr></hr>
+
+        <Link to={`/book/${prevBookId}`}> ◀️ </Link>
+        <Link to={`/book/${nextBookId}`}> ▶️ </Link>
     </section>
 }
